@@ -1,5 +1,5 @@
-from abc import abstractmethod, ABC;
-import logging;
+from abc import abstractmethod, ABC
+import logging
 
 
 logger = logging.getLogger(__name__)
