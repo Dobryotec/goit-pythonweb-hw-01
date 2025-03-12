@@ -1,4 +1,8 @@
 from abc import ABC, abstractmethod
+import logging
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 class Book:
     def __init__(self, title: str, author: str, year: str) -> None:
@@ -42,19 +46,19 @@ class LibraryManager:
     def add_book(self, title: str, author: str, year: str) -> None:
         book = Book(title, author, year)
         self.library.add_book(book)
-        print(f"Book with title {title} added successfully")
+        logger.info(f"Book with title {title} added successfully")
 
     def remove_book(self, title: str) -> None:
         self.library.remove_book(title)
-        print(f"Book with title {title} removed successfully")
+        logger.info(f"Book with title {title} removed successfully")
 
     def show_books(self) -> None:
         books = self.library.get_books()
         if books:
             for book in books:
-                print(f"{book}")
+                logger.info(f"{book}")
         else:
-            print("Library is empty")
+            logger.info("Library is empty")
 
 def main():
     library = Library()
@@ -77,7 +81,8 @@ def main():
             case "exit":
                 break
             case _:
-                print("Invalid command. Please try again.")
+                logger.info("Invalid command. Please try again.")
 
 if __name__ == "__main__":
+    logger.info("Library Manager started")
     main()
